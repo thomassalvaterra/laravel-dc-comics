@@ -16,8 +16,19 @@
                         Prezzo: {{ $item->price }}<br>
                         Fumetto di tipo: {{ $item->type }}
                     </p>
-                    <a href="{{ route('comics.show', $item->id) }}" class="btn btn-primary text-center ms-5">Mostra
-                        dettagli</a>
+                    <div class="d-flex">
+                        <a href="{{ route('comics.show', $item->id) }}" class="btn btn-primary"
+                            style="margin-right: 5px">Dettagli</a>
+                        <a href="{{ route('comics.edit', $item->id) }}" class="btn btn-warning"
+                            style="margin-right: 5px">Modifica</a>
+
+                        <form action="{{ route('comics.destroy', $item->id)}}" method="POST" class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+
+                            <input type="submit" class="btn btn-danger" value="Cancella">
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
